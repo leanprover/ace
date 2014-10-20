@@ -1,19 +1,26 @@
 language: node_js
-
-# use default node version
-# node_js:
-#    - "0.10"
+env:
+  global:
+   # GH_TOKEN=[secure]             (to push to osx/windows repo under soonhokong)
+   - secure: "ui7RLfEqE+Vhf3eUjJMLnrxovojyJLWFoP9dbpN071pYS0IvM3IwrdnBn1vIb6Ln4RKD777qeEquQh3lXNQNm05hy3qRUfZMd4bswmlFb0BZWAs3nCvRwCwnxtgGrZk7Z6CTqDIYD2aG99DL2G6mkYz1jgyy4DUKQcmnWKDUVeg="
+   # REPO=BLESSED                  (to perform extra stuff only for pushes to the blessed repo)
+   - secure: "Qw0NWM4I+ZF8/cDraOXeQ/PqC3BicZ+pCW/lyaj+NpYHNrg2hAAosdB9LQk/JlNrCVxi9MgLSLhtp+zvM3gdXC5F00eqPH+rZj6+dXIjjhM9QGCtXewKF40jHXR2VVzLKH/sKL1sQGXiR6RNnxKGtBshnrpHDQZVX6WKIIomm7c="
 
 script:
-    - npm i eslint
-    - node node_modules/eslint/bin/eslint "lib/ace/**/*.js"
-    - npm test
+  - node ./Makefile.dryice.js full
+  - if [[ $REPO == BLESSED ]]; then
+      git config --global user.email "notifications@travis-ci.org";
+      git config --global user.name "Travis CI";
+      git checkout --orphan gh-pages;
+      mv build/src-min-noconflict ace;
+      rm .git/index;
+      git add ace;
+      git clean -fxd;
+      git commit -m "Update `date -R`";
+      git push -q https://soonhokong:${GH_TOKEN}@github.com/leanprover/ace.git +HEAD:gh-pages;
+    fi
 
-matrix:
-    fast_finish: false
-
-cache:
-    directories:
-        - node_modules
-
-sudo: false
+notifications:
+  email:
+    recipients:
+     - soonho.kong@gmail.com
