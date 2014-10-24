@@ -63,7 +63,7 @@ var supportedScopes = {
    "meta.tag.sgml.doctype": "xml-pe",
    "meta.tag": "meta.tag",
    "meta.selector": "meta.selector",
-   
+
    "entity.other.attribute-name": "entity.other.attribute-name",
    "entity.name.function": "entity.name.function",
    "entity.name": "entity.name",
@@ -112,7 +112,7 @@ function extractStyles(theme) {
         for (var j = 0; j < scopes.length; j++) {
             var scope = scopes[j];
             var style = parseStyles(element.settings);
-        
+
             var aceScope = supportedScopes[scope];
             if (aceScope) {
                 colors[aceScope] = style;
@@ -120,9 +120,9 @@ function extractStyles(theme) {
             else if (style) {
                 unsupportedScopes[scope] = (unsupportedScopes[scope] || 0) + 1;
             }
-        }        
+        }
     }
-    
+
     for (var i in fallbackScopes) {
         if (!colors[i])
             colors[i] = colors[fallbackScopes[i]];
@@ -134,7 +134,7 @@ function extractStyles(theme) {
             colors.fold = foldSource.match(/\:([^;]+)/)[1];
         }
     }
-    
+
     colors.gutterBg = colors.background
     colors.gutterFg = mix(colors.foreground, colors.background, 0.5)
 
@@ -142,7 +142,7 @@ function extractStyles(theme) {
         colors.selected_word_highlight =  "border: 1px solid " + colors.selection + ";";
 
     colors.isDark = (luma(colors.background) < 0.5) + "";
-    
+
     return colors;
 };
 
@@ -245,7 +245,7 @@ function normalizeStylesheet(rules) {
         var s = rules[i].selectors.sort();
         rules[i].selectors = s.filter(function(x, i) {
             return x && x != s[i + 1];
-        });                
+        });
     }
     return rules;
 }
@@ -271,6 +271,7 @@ var themes = {
     "solarized_light": "Solarized-light",
     "katzenmilch": "Katzenmilch",
     "kuroir": "Kuroir Theme",
+    "subatomic": "Subatomic",
     //"textmate": "Textmate (Mac Classic)",
     "tomorrow": "Tomorrow",
     "tomorrow_night": "Tomorrow-Night",
@@ -296,7 +297,7 @@ function convertTheme(name, tmThemePath, outputDirectory) {
         styles.uuid = theme.uuid;
         var css = fillTemplate(cssTemplate, styles);
         css = css.replace(/[^\{\}]+{\s*}/g, "");
-        
+
         for (var i in supportedScopes) {
             if (!styles[i])
                 continue;
@@ -331,15 +332,15 @@ function convertTheme(name, tmThemePath, outputDirectory) {
                     oldRules.splice(i, 0, newRules[i]);
                 }
             }
-            
+
             oldRules = normalizeStylesheet(oldRules);
-            
+
             css = cssStringify({stylesheet: {rules: oldRules}}, { compress: false });
         } catch(e) {
             console.log("Creating new file: " +  name + ".css")
             css = cssStringify(cssParse(css), { compress: false });
         }
-        
+
         var js = fillTemplate(jsTemplate, {
             name: name,
             css: 'require("../requirejs/text!./' + name + '.css")', // quoteString(css), //
@@ -394,7 +395,7 @@ imageData = ctx.getImageData(0,0,1,2)
 function getColor(color) {
     ctx.fillStyle = color;
     ctx.fillRect(0,0,1,2);
-    return Array.slice(ctx.getImageData(0,0,1,2).data).slice(0,4)    
+    return Array.slice(ctx.getImageData(0,0,1,2).data).slice(0,4)
 }
 bgColor = getComputedStyle(ace.renderer.scroller).backgroundColor
 var a = [].concat(getColor(bgColor), getColor(indentGuideColor));

@@ -161,7 +161,7 @@ util.fillDropdown("themeEl", {
         "chrome", "clouds", "crimson_editor", "dawn", "dreamweaver", "eclipse", "github",
         "solarized_light", "textmate", "tomorrow", "xcode"],
     dark: [ "clouds_midnight", "cobalt", "idle_fingers", "kr_theme", "merbivore", "merbivore_soft",
-        "mono_industrial", "monokai", "pastel_on_dark", "solarized_dark",  "terminal", "tomorrow_night",
+        "mono_industrial", "monokai", "pastel_on_dark", "solarized_dark", "subatomic", "terminal", "tomorrow_night",
         "tomorrow_night_blue", "tomorrow_night_bright", "tomorrow_night_eighties", "twilight", "vibrant_ink"]
 });
 
@@ -256,4 +256,3 @@ function hideLog() {
 }
 
 });
-
