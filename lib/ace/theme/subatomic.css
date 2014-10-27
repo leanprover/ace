@@ -55,8 +55,15 @@
 .ace-subatomic .ace_keyword,
 .ace-subatomic .ace_meta.ace_tag,
 .ace-subatomic .ace_storage {
-  color: #F92672
+  font-weight: bold;
+  color: #f9b529;
 }
+
+.ace-subatomic .ace_operator {
+  color: white;
+  font-weight: bold;
+}
+
 
 .ace-subatomic .ace_punctuation,
 .ace-subatomic .ace_punctuation.ace_tag {
@@ -67,7 +74,7 @@
 .ace-subatomic .ace_constant.ace_language,
 .ace-subatomic .ace_constant.ace_numeric,
 .ace-subatomic .ace_constant.ace_other {
-  color: #AE81FF
+  color: white;
 }
 
 .ace-subatomic .ace_invalid {
@@ -82,7 +89,7 @@
 
 .ace-subatomic .ace_support.ace_constant,
 .ace-subatomic .ace_support.ace_function {
-  color: #66D9EF
+  color: white;
 }
 
 .ace-subatomic .ace_fold {
@@ -93,7 +100,6 @@
 .ace-subatomic .ace_storage.ace_type,
 .ace-subatomic .ace_support.ace_class,
 .ace-subatomic .ace_support.ace_type {
-  font-style: italic;
   color: #66D9EF
 }
 
