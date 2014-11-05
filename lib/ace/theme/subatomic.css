@@ -55,13 +55,13 @@
 .ace-subatomic .ace_keyword,
 .ace-subatomic .ace_meta.ace_tag,
 .ace-subatomic .ace_storage {
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #f9b529;
 }
 
 .ace-subatomic .ace_operator {
   color: white;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 
