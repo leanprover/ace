@@ -9,7 +9,7 @@ env:
    - secure: "Qw0NWM4I+ZF8/cDraOXeQ/PqC3BicZ+pCW/lyaj+NpYHNrg2hAAosdB9LQk/JlNrCVxi9MgLSLhtp+zvM3gdXC5F00eqPH+rZj6+dXIjjhM9QGCtXewKF40jHXR2VVzLKH/sKL1sQGXiR6RNnxKGtBshnrpHDQZVX6WKIIomm7c="
 
 script:
-  - node ./Makefile.dryice.js full
+  - node ./Makefile.dryice.js normal
   - if [[ $REPO == BLESSED ]]; then
       git config --global user.email "notifications@travis-ci.org";
       git config --global user.name "Travis CI";
